@@ -35,10 +35,17 @@ instructions_and_results.txt
     Compile instructions, run instructions, textbook confirmation, and actual
     test output.
 
+project8.exe
+    Compiled Windows executable produced from main.cpp and Set.h.
+
 index.html
 styles.css
 app.js
-    Cyberpunk-style web demo for visually testing the set behavior.
+    Cyberpunk-style web demo for visually testing the set behavior. These root
+    files are ready for GitHub Pages.
+
+webdemo/
+    Separate folder copy of the same web demo files.
 
 How to Test the C++ Program
 ---------------------------
@@ -64,7 +71,7 @@ The program should show:
 
 How to View the Web Demo
 ------------------------
-Open index.html in a web browser.
+Open index.html in a web browser, or open webdemo/index.html.
 
 The web page includes:
 1. Manual cyberpunk-style live Set tester at the top.
