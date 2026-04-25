@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project 8 | Cyber Set Demo</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="topline">
+        <div class="brand">
+            <span class="brand-mark">S</span>
+            <div>
+                <strong>Project 8</strong>
+                <span>Template Set Class</span>
+            </div>
+        </div>
+        <div class="byline">By Oudom Thach</div>
+    </header>
+
+    <main>
+        <section class="program-first" aria-labelledby="demo-title">
+            <div class="program-title">
+                <p class="eyebrow">CSCI 221 - Computer Science II</p>
+                <h1 id="demo-title">Set Class Live Program</h1>
+                <p>
+                    Interactive cyberpunk-style demo for the C++ template set assignment.
+                    Add, remove, search, count, and export a dynamic array.
+                </p>
+            </div>
+
+            <section class="demo-shell" aria-label="Interactive set program">
+                <aside class="demo-sidebar">
+                    <div>
+                        <span class="status-light"></span>
+                        <p class="eyebrow">Live template mode</p>
+                        <h2>Choose data type</h2>
+                    </div>
+                    <div class="type-switch" aria-label="Choose set type">
+                        <button class="tab active" type="button" data-type="int">Set&lt;int&gt;</button>
+                        <button class="tab" type="button" data-type="string">Set&lt;std::string&gt;</button>
+                    </div>
+                    <p class="side-note">
+                        The same class works for different types because the source uses <code>template &lt;typename T&gt;</code>.
+                    </p>
+                </aside>
+
+                <div class="demo-workspace">
+                    <div class="command-panel">
+                        <label class="field">
+                            <span id="input-label">Integer item</span>
+                            <input id="item-input" type="text" inputmode="numeric" placeholder="Enter a number">
+                        </label>
+                        <div class="button-row">
+                            <button class="primary" id="add-button" type="button">Add</button>
+                            <button id="remove-button" type="button">Remove</button>
+                            <button id="contains-button" type="button">Contains</button>
+                            <button id="array-button" type="button">toArray</button>
+                        </div>
+                    </div>
+
+                    <div class="metric-grid">
+                        <div class="metric">
+                            <span>getCurrentSize()</span>
+                            <strong id="size-value">0</strong>
+                        </div>
+                        <div class="metric">
+                            <span>Internal capacity</span>
+                            <strong id="capacity-value">4</strong>
+                        </div>
+                        <div class="metric result">
+                            <span>Last operation</span>
+                            <strong id="result-value">Ready</strong>
+                        </div>
+                    </div>
+
+                    <div class="array-card">
+                        <div class="card-header">
+                            <div>
+                                <span class="mini-label">Dynamic array storage</span>
+                                <h3>Current set contents</h3>
+                            </div>
+                            <button class="secondary" id="reset-button" type="button">Reset sample</button>
+                        </div>
+                        <div id="array-view" class="array-view" aria-live="polite"></div>
+                    </div>
+
+                    <div class="export-card">
+                        <div>
+                            <span class="mini-label">Requirement e</span>
+                            <h3>Returned array pointer</h3>
+                            <p>The caller owns this copied dynamic array and must use <code>delete[]</code>.</p>
+                        </div>
+                        <pre id="array-output">Click toArray to create a copied array.</pre>
+                    </div>
+                </div>
+            </section>
+        </section>
+
+        <section class="assignment" aria-labelledby="assignment-title">
+            <div class="section-heading">
+                <p class="eyebrow">Assignment instruction</p>
+                <h2 id="assignment-title">What the book asks for</h2>
+            </div>
+            <p class="assignment-copy">
+                Write a template-based class that implements a set of items. A set is a collection
+                where no item occurs more than once. Internally, the set may use an array, vector,
+                list, or another structure, but the class must externally support the required operations.
+            </p>
+            <div class="requirement-grid">
+                <article class="requirement">
+                    <span class="number">a</span>
+                    <h3>Add a new item</h3>
+                    <p>If the item is already in the set, nothing happens.</p>
+                </article>
+                <article class="requirement">
+                    <span class="number">b</span>
+                    <h3>Remove an item</h3>
+                    <p>Remove the matching value when it exists in the set.</p>
+                </article>
+                <article class="requirement">
+                    <span class="number">c</span>
+                    <h3>Return the count</h3>
+                    <p><code>getCurrentSize()</code> returns the number of stored items.</p>
+                </article>
+                <article class="requirement">
+                    <span class="number">d</span>
+                    <h3>Check membership</h3>
+                    <p><code>contains()</code> determines whether an item is in the set.</p>
+                </article>
+                <article class="requirement">
+                    <span class="number">e</span>
+                    <h3>Return an array pointer</h3>
+                    <p><code>toArray()</code> returns a new dynamic array. The caller deallocates it.</p>
+                </article>
+                <article class="requirement">
+                    <span class="number">test</span>
+                    <h3>Use different data types</h3>
+                    <p>The C++ test program creates <code>Set&lt;int&gt;</code> and <code>Set&lt;std::string&gt;</code>.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="code-map" aria-labelledby="code-map-title">
+            <div class="section-heading">
+                <p class="eyebrow">C++ API map</p>
+                <h2 id="code-map-title">How the assignment maps to the code</h2>
+            </div>
+            <div class="function-grid">
+                <div class="function-row">
+                    <span>Add</span>
+                    <code>bool add(const T&amp; item)</code>
+                </div>
+                <div class="function-row">
+                    <span>Remove</span>
+                    <code>bool remove(const T&amp; item)</code>
+                </div>
+                <div class="function-row">
+                    <span>Count</span>
+                    <code>int getCurrentSize() const</code>
+                </div>
+                <div class="function-row">
+                    <span>Member</span>
+                    <code>bool contains(const T&amp; item) const</code>
+                </div>
+                <div class="function-row">
+                    <span>Array copy</span>
+                    <code>T* toArray() const</code>
+                </div>
+            </div>
+        </section>
+
+        <section class="testing" id="testing" aria-labelledby="testing-title">
+            <div class="section-heading">
+                <p class="eyebrow">How to test</p>
+                <h2 id="testing-title">Compile, run, and compare output</h2>
+            </div>
+
+            <div class="terminal-grid">
+                <div class="terminal-block">
+                    <span class="terminal-label">Compile command</span>
+                    <pre>g++ -std=c++17 -Wall -Wextra -pedantic main.cpp -o project8.exe</pre>
+                </div>
+                <div class="terminal-block">
+                    <span class="terminal-label">Run command</span>
+                    <pre>.\project8.exe</pre>
+                </div>
+            </div>
+
+            <div class="terminal-block output">
+                <span class="terminal-label">Actual result from this computer</span>
+                <pre>Project 8 - Template Set Test
+Name: Oudom Thach
+
+Adding integer items:
+Add 10: added
+Add 20: added
+Add 30: added
+Add duplicate 20: not added because it is already in the set
+
+Current number of integer items: 3
+Is 20 in the integer set? yes
+Is 99 in the integer set? no
+
+Removing integer items:
+Remove 20: removed
+Remove 99: not removed because it was not found
+
+Number of integer items after removals: 2
+Items returned by dynamically created integer array: 10 30
+
+Adding string items to show the template works with another type:
+Add Oudom: added
+Add Thach: added
+Add duplicate Oudom: not added because it is already in the set
+Current number of string items: 2
+Is Oudom in the string set? yes
+
+Test complete.</pre>
+            </div>
+        </section>
+
+        <section class="auto-walkthrough" id="auto-walkthrough" aria-labelledby="auto-title">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">Automatic live result</p>
+                    <h2 id="auto-title">Step-by-step program playback</h2>
+                </div>
+                <p class="section-note">
+                    Separate from the top tester. This runs by itself to show what the C++ test does.
+                </p>
+            </div>
+
+            <div class="auto-grid">
+                <div class="auto-stage">
+                    <div class="auto-stage-header">
+                        <span id="auto-step-value">Step 1</span>
+                        <span id="auto-type-value">Set&lt;int&gt;</span>
+                    </div>
+                    <h3 id="auto-action-value">Preparing playback</h3>
+                    <p id="auto-detail-value">The walkthrough will begin automatically.</p>
+
+                    <div class="auto-stats">
+                        <div>
+                            <span>Current size</span>
+                            <strong id="auto-size-value">0</strong>
+                        </div>
+                        <div>
+                            <span>Capacity</span>
+                            <strong id="auto-capacity-value">4</strong>
+                        </div>
+                        <div>
+                            <span>Result</span>
+                            <strong id="auto-result-value">Ready</strong>
+                        </div>
+                    </div>
+
+                    <div class="auto-array" id="auto-array-view" aria-live="polite"></div>
+                </div>
+
+                <div class="auto-log-card">
+                    <div class="card-header">
+                        <div>
+                            <span class="mini-label">Performed operations</span>
+                            <h3>Live result log</h3>
+                        </div>
+                        <button class="secondary" id="auto-restart-button" type="button">Restart playback</button>
+                    </div>
+                    <pre id="auto-log-output">Waiting for automatic playback...</pre>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <span>Project 8 cyber set demo</span>
+        <strong>By Oudom Thach</strong>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,121 @@
+Name: Oudom Thach
+Course: CSCI 221 - Computer Science II
+Project: Project 8
+Due Date: 04/25/2026 at 11:59 pm
+
+Assignment Purpose
+------------------
+This project completes the instructor's requirement to create a template-based
+class that implements a set of items. A set is a collection where no item occurs
+more than once.
+
+The Set class can:
+1. Add a new item to the set.
+2. Remove an item from the set.
+3. Return the number of items in the set.
+4. Determine if an item is a member of the set.
+5. Return a pointer to a dynamically created array containing each item in the set.
+
+Files Included
+--------------
+1. Set.h
+   - Contains the template-based Set class.
+   - Uses a dynamic array to store unique items.
+   - Includes comments explaining the code.
+
+2. main.cpp
+   - Tests every required Set function.
+   - Shows that duplicate items are rejected.
+   - Shows that the template works with integers and strings.
+   - Deletes the dynamic array returned by toArray().
+
+3. instructions_and_results.txt
+   - Gives compile instructions, run instructions, and test results.
+
+Step-by-Step Instructions
+-------------------------
+1. Open PowerShell in this folder:
+   C:\Users\sukma\Downloads\Computer Science II\Project\project_8
+
+2. Compile the program with this command:
+   g++ -std=c++17 -Wall -Wextra -pedantic main.cpp -o project8.exe
+
+3. Run the program with this command:
+   .\project8.exe
+
+4. Check the output to confirm:
+   - Items can be added.
+   - Duplicate items are not added.
+   - The number of items is displayed.
+   - Membership is checked.
+   - Items can be removed.
+   - Missing items are handled safely.
+   - A dynamic array is returned and printed.
+
+Compiler Used
+-------------
+g++.exe (MinGW-W64 x86_64-ucrt-posix-seh) 15.2.0
+
+Textbook Confirmed
+------------------
+The assignment was checked against this PDF:
+C:\Users\sukma\Downloads\Machine Vision\Walter_J_Savitch_Problem_Solving.pdf
+
+The PDF title page shows:
+Problem Solving with C++
+Tenth Edition, Global Edition
+Walter Savitch
+
+The project appears in Chapter 17, Programming Projects, number 7. The
+printed book page shown in the PDF is 989, and the PDF page number is 992.
+The instructor's page number may be different because textbook editions and
+PDF page numbers do not always match.
+
+Actual Compile Result
+---------------------
+Command:
+g++ -std=c++17 -Wall -Wextra -pedantic main.cpp -o project8.exe
+
+Result:
+The program compiled successfully with no warning or error output.
+
+Actual Run Result
+-----------------
+Command:
+.\project8.exe
+
+Output:
+Project 8 - Template Set Test
+Name: Oudom Thach
+
+Adding integer items:
+Add 10: added
+Add 20: added
+Add 30: added
+Add duplicate 20: not added because it is already in the set
+
+Current number of integer items: 3
+Is 20 in the integer set? yes
+Is 99 in the integer set? no
+
+Removing integer items:
+Remove 20: removed
+Remove 99: not removed because it was not found
+
+Number of integer items after removals: 2
+Items returned by dynamically created integer array: 10 30
+
+Adding string items to show the template works with another type:
+Add Oudom: added
+Add Thach: added
+Add duplicate Oudom: not added because it is already in the set
+Current number of string items: 2
+Is Oudom in the string set? yes
+
+Test complete.
+
+Notes
+-----
+The textbook PDF was checked after the program was written. The assignment
+requirements in the PDF match the Project 8 prompt, so the solution follows
+the required Programming Project 17.7 instructions.
